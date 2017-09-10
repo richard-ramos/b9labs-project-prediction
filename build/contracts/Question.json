@@ -1,0 +1,269 @@
+{
+  "contract_name": "Question",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "onOff",
+          "type": "bool"
+        }
+      ],
+      "name": "runSwitch",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "response",
+          "type": "bool"
+        }
+      ],
+      "name": "bet",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "closeBets",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "changeOwner",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_trustedSource",
+          "type": "address"
+        }
+      ],
+      "name": "removeTrustedSource",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "withdrawWinnings",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "running",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_trustedSource",
+          "type": "address"
+        }
+      ],
+      "name": "addTrustedSource",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "response",
+          "type": "bool"
+        }
+      ],
+      "name": "answerQuestion",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_questionText",
+          "type": "string"
+        },
+        {
+          "name": "_administrator",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "switchSetting",
+          "type": "bool"
+        }
+      ],
+      "name": "LogRunSwitch",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "oldOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "LogNewOwner",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b604051610846380380610846833981016040528080518201919060200180519150505b5b5b60008054600160a060020a03191633600160a060020a03161790555b6000805460a060020a60ff021916740100000000000000000000000000000000000000001790555b60018054600160a060020a031916600160a060020a03831617905560088280516100a69291602001906100cf565b506005805467ffffffffffffffff191690556009805462ff00ff191660011790555b505061016f565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061011057805160ff191683800117855561013d565b8280016001018555821561013d579182015b8281111561013d578251825591602001919060010190610122565b5b5061014a92915061014e565b5090565b61016c91905b8082111561014a5760008155600101610154565b5090565b90565b6106c88061017e6000396000f300606060405236156100885763ffffffff60e060020a6000350416632dd97058811461008d578063523afb0d146100b9578063886e3437146100da5780638da5cb5b14610101578063a6f9dae114610130578063ae3f9c2714610163578063cc42e83a14610196578063d85bd526146101bd578063e5782278146101e4578063f9e0496114610217575b600080fd5b341561009857600080fd5b6100a56004351515610243565b604051901515815260200160405180910390f35b6100a560043515156102c9565b604051901515815260200160405180910390f35b34156100e557600080fd5b6100a5610394565b604051901515815260200160405180910390f35b341561010c57600080fd5b6101146103e0565b604051600160a060020a03909116815260200160405180910390f35b341561013b57600080fd5b6100a5600160a060020a03600435166103ef565b604051901515815260200160405180910390f35b341561016e57600080fd5b6100a5600160a060020a03600435166104a6565b604051901515815260200160405180910390f35b34156101a157600080fd5b6100a56104ee565b604051901515815260200160405180910390f35b34156101c857600080fd5b6100a56105bb565b604051901515815260200160405180910390f35b34156101ef57600080fd5b6100a5600160a060020a03600435166105cb565b604051901515815260200160405180910390f35b341561022257600080fd5b6100a56004351515610617565b604051901515815260200160405180910390f35b6000805433600160a060020a0390811691161461025f57600080fd5b6000805460a060020a60ff02191660a060020a841515021790557fe149139e745b87d23672d6d1bd3f9160008dc717a946188ef8c5155e4ee6b8453383604051600160a060020a039092168252151560208201526040908101905180910390a15060015b5b919050565b60095460009060ff1615156102dd57600080fd5b811561032e5760068054349081019091556005805463ffffffff8082166001011663ffffffff19909116179055600160a060020a03331660009081526004602052604090208054909101905561038a565b60078054349081019091556005805463ffffffff602060020a808304821660019081019092160267ffffffff000000001990921691909117909155600160a060020a033316600090815260046020526040902001805490910190555b5060015b5b919050565b60015460009033600160a060020a039081169116146103b257600080fd5b60095460ff610100909104161515600114156103cd57600080fd5b506009805460ff1916905560015b5b5b90565b600054600160a060020a031681565b6000805433600160a060020a0390811691161461040b57600080fd5b600160a060020a038216151561042057600080fd5b6000547f95a4124b32fadd40e6e63088992a62e3505e61d1683b783d03e575d7c1dfb967903390600160a060020a031684604051600160a060020a03938416815291831660208301529091166040808301919091526060909101905180910390a15060008054600160a060020a031916600160a060020a03831617905560015b5b919050565b60015460009033600160a060020a039081169116146104c457600080fd5b50600160a060020a0381166000908152600260205260409020805460ff1916905560015b5b919050565b600954600090819060ff6101009091041615156001141561050e57600080fd5b600160a060020a03331660009081526003602052604090205460ff16151561053557600080fd5b5060095460009062010000900460ff161561057e57600654600754600160a060020a0333166000908152600460205260409020549082010281151561057657fe5b0490506105b1565b600754600654600160a060020a033316600090815260046020526040902060010154908201028115156105ad57fe5b0490505b600191505b5b5090565b60005460a060020a900460ff1681565b60015460009033600160a060020a039081169116146105e957600080fd5b50600160a060020a0381166000908152600260205260409020805460ff191660019081179091555b5b919050565b60095460009060ff1615156001141561062f57600080fd5b60095460ff6101009091041615156001141561064a57600080fd5b600160a060020a03331660009081526002602052604090205460ff16151561067157600080fd5b506009805461010061ff00199091161762ff00001916620100008315150217905560015b5b5b9190505600a165627a7a723058206b3819e3d52d69900e23bab265755dc4fc851f0fe3e1fa36af1ca19c79a65c890029",
+  "networks": {
+    "1505084743662": {
+      "events": {
+        "0xe149139e745b87d23672d6d1bd3f9160008dc717a946188ef8c5155e4ee6b845": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "switchSetting",
+              "type": "bool"
+            }
+          ],
+          "name": "LogRunSwitch",
+          "type": "event"
+        },
+        "0x95a4124b32fadd40e6e63088992a62e3505e61d1683b783d03e575d7c1dfb967": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "oldOwner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "LogNewOwner",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xc6a1be4d6ab9468940daf6e259f23c44356b3b6a",
+      "updated_at": 1505085605445
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1505085605445
+}
