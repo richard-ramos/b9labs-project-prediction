@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
+import PredictionMarketContract from '../build/contracts/PredictionMarket.json'
 import getWeb3 from './utils/getWeb3'
 
 import './css/oswald.css'
@@ -7,13 +7,23 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+import AccountManager from "./AccountManager";
+import QuestionForm from "./QuestionForm";
+
+
 class App extends Component {
+
   constructor(props) {
     super(props)
 
+    this.handleSelectAccount = this.handleSelectAccount.bind(this);
+
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      accounts: null,
+      selectedAccount: null,
+      balance: 0
     }
   }
 
@@ -28,7 +38,7 @@ class App extends Component {
       })
 
       // Instantiate contract once web3 provided.
-      this.instantiateContract()
+      this.instantiateContract();
     })
     .catch(() => {
       console.log('Error finding web3.')
@@ -44,14 +54,32 @@ class App extends Component {
      */
 
     const contract = require('truffle-contract')
-    const simpleStorage = contract(SimpleStorageContract)
-    simpleStorage.setProvider(this.state.web3.currentProvider)
+    const predictionMarket = contract(PredictionMarketContract)
 
+    predictionMarket.setProvider(this.state.web3.currentProvider)
+
+predictionMarket.deployed()
+  .then((instance) => {
+    return instance.owner()
+  }).then((result) => {
+    console.log(result);
+  })
+
+
+/*
+  .owner(function(e){
+  console.log(e);
+})*/
     // Declaring this for later so we can chain functions on SimpleStorage.
     var simpleStorageInstance
 
+    this.state.web3.eth.getAccounts((error, accts) => {
+      this.setState({ accounts: accts});
+    });
+
+
     // Get accounts.
-    this.state.web3.eth.getAccounts((error, accounts) => {
+    /*this.state.web3.eth.getAccounts((error, accounts) => {
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
 
@@ -64,28 +92,59 @@ class App extends Component {
         // Update state with the result.
         return this.setState({ storageValue: result.c[0] })
       })
-    })
+    })*/
+
+
+
+
+
+
+
   }
+
+
+
+  handleSelectAccount(act){
+    console.log(act);
+    this.state.web3.eth.getBalance(act, (error, balance) => {
+      this.setState({selectedAccount: act, accountBalance: balance.toString(10)});
+    });
+  }
+
+
+
+  watchQuestions() {
+    /*hub.LogNewCampaign( {}, {fromBlock: 0})
+    .watch(function(err,newCampaign) {
+      if(err) 
+      {
+        console.error("Campaign Error:",err);
+      } else {
+        // normalizing data for output purposes
+        console.log("New Campaign", newCampaign);
+        newCampaign.args.user   = newCampaign.args.sponsor;
+        newCampaign.args.amount = newCampaign.args.goal.toString(10);     
+        // only if non-repetitive (testRPC)
+        if(typeof(txn[newCampaign.transactionHash])=='undefined')
+        {
+          $scope.campaignLog.push(newCampaign);         
+          txn[newCampaign.transactionHash]=true;
+          upsertCampaign(newCampaign.args.campaign);
+        }
+      }
+    })*/
+  }
+
+
 
   render() {
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-            <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
-        </nav>
-
-        <main className="container">
-          <div className="pure-g">
-            <div className="pure-u-1-1">
-              <h1>Good to Go!</h1>
-              <p>Your Truffle Box is installed and ready.</p>
-              <h2>Smart Contract Example</h2>
-              <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
-              <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
-              <p>The stored value is: {this.state.storageValue}</p>
-            </div>
-          </div>
-        </main>
+        <h1>PredictionMarket</h1>
+        <form>
+          <AccountManager list={this.state.accounts} selectAccountHandler={this.handleSelectAccount} balance={this.state.accountBalance} />
+          <QuestionForm />
+        </form>
       </div>
     );
   }
