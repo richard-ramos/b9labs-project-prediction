@@ -138,6 +138,8 @@ contract Question is Stoppable {
             winningAmount = gamblerBets[msg.sender].betAmountNo * (totalAmountYes + totalAmountNo) / totalAmountNo;
         }
         
+		msg.sender.send(winningAmount);
+		
         return true;
     }
 
